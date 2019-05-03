@@ -18,10 +18,7 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-// app.use(router);
-app.get("/", (req, res) => {
-  res.send("hello there");
-});
+app.use(router);
 
 mongoose.connect(url, { useNewUrlParser: true }, function(err) {
   if (err) {
