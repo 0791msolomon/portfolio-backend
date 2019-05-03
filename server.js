@@ -1,12 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
-const app = express();
-const port = process.env.PORT || 3000;
-// const path = require('path');
-
-const express = require("express");
-const bodyParser = require("body-parser");
 const router = require("./app/routes");
 const app = express();
 const cors = require("cors");
@@ -25,7 +18,10 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(router);
+// app.use(router);
+app.get("/", (req, res) => {
+  res.send("hello there");
+});
 
 mongoose.connect(url, { useNewUrlParser: true }, function(err) {
   if (err) {
