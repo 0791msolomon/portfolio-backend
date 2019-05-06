@@ -7,7 +7,16 @@ const getZip = async (req, res) => {
         process.env.REACT_APP_ZIPCODE_KEY
       }/info.json/${req.query.zip}/radians`
     );
-    res.status(200).send(response.data.city);
+    let forecast = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&units=${unit}&APPID=${
+        process.env.REACT_APP_WEATHER_API_KEY
+      }`
+    );
+    let data = {
+      city: response.data.city,
+      forecastInfo: forecast.data
+    };
+    res.status(200).send(data);
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
