@@ -2,11 +2,11 @@ const axios = require("axios");
 
 const getZip = async (req, res) => {
   try {
-    let response = await axios.get(
-      `https://www.zipcodeapi.com/rest/${
-        process.env.REACT_APP_ZIPCODE_KEY
-      }/info.json/${req.query.zip}/radians`
-    );
+    // let response = await axios.get(
+    //   `https://www.zipcodeapi.com/rest/${
+    //     process.env.REACT_APP_ZIPCODE_KEY
+    //   }/info.json/${req.query.zip}/radians`
+    // );
     let forecast = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?zip=${
         req.query.zip
@@ -15,7 +15,7 @@ const getZip = async (req, res) => {
       }`
     );
     let data = {
-      city: response.data.city,
+      // city: response.data.city,
       forecastInfo: forecast.data
     };
     res.status(200).send(data);
