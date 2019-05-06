@@ -8,7 +8,9 @@ const getZip = async (req, res) => {
       }/info.json/${req.query.zip}/radians`
     );
     let forecast = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&units=${unit}&APPID=${
+      `https://api.openweathermap.org/data/2.5/forecast?zip=${
+        req.query.zip
+      },us&units=${req.query.unit}&APPID=${
         process.env.REACT_APP_WEATHER_API_KEY
       }`
     );
