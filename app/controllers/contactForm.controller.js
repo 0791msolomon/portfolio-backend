@@ -1,8 +1,9 @@
 const { Contact } = require("../models/Contact");
 var mailgun = require("mailgun-js");
 var DOMAIN = "mg.mattsolomondomain.com";
+const apiKey = process.env.REACT_APP_MAILGUN_KEY || process.env.MAILGUN_KEY;
 var mailgun = require("mailgun-js")({
-  apiKey: process.env.REACT_APP_MAILGUN_KEY,
+  apiKey,
   domain: DOMAIN
 });
 

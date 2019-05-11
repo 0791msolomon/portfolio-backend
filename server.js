@@ -11,7 +11,7 @@ dotenv.config();
 const url =
   process.env.MONGODB_URI ||
   process.env.REACT_APP_MONGOURL ||
-  "mongodb://localhost:27017";
+  "mongodb://localhost:27017/contacts";
 const port = process.env.PORT || 5000;
 
 // app.use(express.static(path.join(__dirname, "client", "build")));
