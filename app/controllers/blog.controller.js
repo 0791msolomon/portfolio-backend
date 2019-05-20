@@ -2,11 +2,42 @@ const { Blog } = require("../models/Blog");
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
+const addComment = (req, res) => {
+  Blog.findOneAndUpdate(
+    { _id: req.body.id },
+    {
+      $push: {
+        replies: {
+          comment: req.body.reply,
+          name: req.body.name,
+          time: Date.parse(new Date())
+        }
+      }
+    },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
+      res.status(200).send(doc);
+    }
+  );
+};
+
 const postBlog = (req, res) => {
+  let image;
+  if (req.body.image) {
+    image = req.body.image;
+  } else {
+    image =
+      "https://cdn.ebaumsworld.com/mediaFiles/picture/1035099/85708057.jpg";
+  }
   let blog = new Blog({
     title: req.body.title,
     body: req.body.body,
-    time: Date.parse(new Date())
+    time: Date.parse(new Date()),
+    image
   });
   blog
     .save()
@@ -65,4 +96,16 @@ const reply = (req, res) => {
     }
   );
 };
-module.exports = { postBlog, getAll, likePost, reply };
+
+function getBlog(req, res) {
+  Blog.findById(req.params.id)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(response);
+    });
+  // console.log(req.params.id);
+}
+module.exports = { postBlog, getAll, likePost, reply, getBlog, addComment };

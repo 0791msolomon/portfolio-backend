@@ -13,6 +13,10 @@ const Blog = mongoose.model("blogs", {
     trime: true,
     minLength: 5
   },
+  image: {
+    type: String,
+    required: true
+  },
   time: {
     type: Number,
     required: true
