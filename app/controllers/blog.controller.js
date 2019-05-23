@@ -37,7 +37,9 @@ const postBlog = (req, res) => {
     title: req.body.title,
     body: req.body.body,
     time: Date.parse(new Date()),
-    image
+    image,
+    likes: 0,
+    replies: []
   });
   blog
     .save()
