@@ -17,6 +17,18 @@ const Home = mongoose.model("realty", {
   state: {
     type: String,
     required: true
+  },
+  rooms: {
+    type: Number,
+    required: false
+  },
+  baths: {
+    type: Number,
+    required: false
+  },
+  footage: {
+    type: Number,
+    required: false
   }
 });
 
