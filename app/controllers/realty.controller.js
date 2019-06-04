@@ -104,7 +104,29 @@ const deleteOne = (req, res) => {
       res.status(500).send(err);
     });
 };
+
+const getPaging = (req, res) => {
+  let start = req.params.page * 30;
+  Home.find()
+    .skip(start)
+    .limit(30)
+    .then(response => {
+      res.status(200).send(response);
+    });
+};
+
+const totalCount = (req, res) => {
+  Home.countDocuments({})
+    .then(response => {
+      res.status(200).send({ response });
+    })
+    .catch(err => {
+      res.status(500).send({ err });
+    });
+};
 module.exports = {
+  totalCount,
+  getPaging,
   addHomes,
   getHomes,
   getHome,

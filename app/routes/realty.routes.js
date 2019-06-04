@@ -7,6 +7,8 @@ router.get("/home/:id", realtyController.getHome);
 router.get("/recentListings", realtyController.recentListings);
 router.get("/hundredListings", realtyController.hundredListings);
 router.get("/chunks", realtyController.getChunks);
+router.get("/paging/:page", realtyController.getPaging);
+router.get("/totalCount", realtyController.totalCount);
 router.put("/home/:id", realtyController.updateOne);
 router.delete("/:id", realtyController.deleteOne);
 module.exports = router;
