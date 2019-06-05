@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const router = require("express").Router();
 
 const blogRoutes = require("./blog.routes");
